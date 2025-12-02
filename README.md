@@ -17,13 +17,13 @@ import swifttd
 
 # Version of SwiftTD that expects the full feature vector as input. This should only be used if the feature representation is not sparse. Otherwise, the sparse versions are more efficient.
 td_dense = swifttd.SwiftTDNonSparse(
-    num_features=5,     # Number of input features
-    lambda_=0.95,        # Lambda parameter for eligibility traces
-    initial_alpha=1e-2,  # Initial learning rate
+    num_of_features=5,     # Number of input features
+    lambda=0.95,        # Lambda parameter for eligibility traces
+    alpha=1e-2,  # Initial learning rate
     gamma=0.99,        # Discount factor
-    eps=1e-5,          # Small constant for numerical stability
-    max_step_size=0.1, # Maximum allowed step size
-    step_size_decay=0.999, # Step size decay rate
+    epsilon=1e-5,          # Small constant for numerical stability
+    eta=0.1, # Maximum allowed step size (bound on rate of learning)
+    decay=0.999, # Step size decay rate
     meta_step_size=1e-3,  # Meta learning rate
     eta_min=1e-10 # Minimum value of the step-size parameter
 )
@@ -36,13 +36,13 @@ print("Dense prediction:", prediction)
 
 # Version of SwiftTD that expects the feature indices as input. This version assumes that the features are binary---0 or 1. For learning, the indices of the features that are 1 are provided. 
 td_sparse = swifttd.SwiftTDBinaryFeatures(
-    num_features=1000,     # Number of input features
-    lambda_=0.95,        # Lambda parameter for eligibility traces
-    initial_alpha=1e-2,  # Initial learning rate
+    num_of_features=1000,     # Number of input features
+    lambda=0.95,        # Lambda parameter for eligibility traces
+    alpha=1e-2,  # Initial learning rate
     gamma=0.99,        # Discount factor
-    eps=1e-5,          # Small constant for numerical stability
-    max_step_size=0.1, # Maximum allowed step size
-    step_size_decay=0.999, # Step size decay rate
+    epsilon=1e-5,          # Small constant for numerical stability
+    eta=0.1, # Maximum allowed step size (bound on rate of learning)
+    decay=0.999, # Step size decay rate
     meta_step_size=1e-3,  # Meta learning rate
     eta_min=1e-10 # Minimum value of the step-size parameter
 )
@@ -56,13 +56,13 @@ print("Sparse binary prediction:", prediction)
 # Version of SwiftTD that expects the feature indices and values as input. This version does not assume that the features are binary. For learning, it expects a list of (index, value) pairs. Only the indices of the features that are non-zero need to be provided. 
 
 td_sparse_nonbinary = swifttd.SwiftTD(
-    num_features=1000,     # Number of input features
-    lambda_=0.95,        # Lambda parameter for eligibility traces
-    initial_alpha=1e-2,  # Initial learning rate
+    num_of_features=1000,     # Number of input features
+    lambda=0.95,        # Lambda parameter for eligibility traces
+    alpha=1e-2,  # Initial learning rate
     gamma=0.99,        # Discount factor
-    eps=1e-5,          # Small constant for numerical stability
-    max_step_size=0.1, # Maximum allowed step size
-    step_size_decay=0.999, # Step size decay rate
+    epsilon=1e-5,          # Small constant for numerical stability
+    eta=0.1, # Maximum allowed step size (bound on rate of learning)
+    decay=0.999, # Step size decay rate
     meta_step_size=1e-3,  # Meta learning rate
     eta_min=1e-10 # Minimum value of the step-size parameter
 )
