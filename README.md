@@ -18,7 +18,7 @@ import swifttd
 # Version of SwiftTD that expects the full feature vector as input. This should only be used if the feature representation is not sparse. Otherwise, the sparse versions are more efficient.
 td_dense = swifttd.SwiftTDNonSparse(
     num_of_features=5,     # Number of input features
-    lambda=0.95,        # Lambda parameter for eligibility traces
+    lambda_=0.95,        # Lambda parameter for eligibility traces
     alpha=1e-2,  # Initial learning rate
     gamma=0.99,        # Discount factor
     epsilon=1e-5,          # Small constant for numerical stability
@@ -37,7 +37,7 @@ print("Dense prediction:", prediction)
 # Version of SwiftTD that expects the feature indices as input. This version assumes that the features are binary---0 or 1. For learning, the indices of the features that are 1 are provided. 
 td_sparse = swifttd.SwiftTDBinaryFeatures(
     num_of_features=1000,     # Number of input features
-    lambda=0.95,        # Lambda parameter for eligibility traces
+    lambda_=0.95,        # Lambda parameter for eligibility traces
     alpha=1e-2,  # Initial learning rate
     gamma=0.99,        # Discount factor
     epsilon=1e-5,          # Small constant for numerical stability
@@ -57,7 +57,7 @@ print("Sparse binary prediction:", prediction)
 
 td_sparse_nonbinary = swifttd.SwiftTD(
     num_of_features=1000,     # Number of input features
-    lambda=0.95,        # Lambda parameter for eligibility traces
+    lambda_=0.95,        # Lambda parameter for eligibility traces
     alpha=1e-2,  # Initial learning rate
     gamma=0.99,        # Discount factor
     epsilon=1e-5,          # Small constant for numerical stability
