@@ -116,6 +116,16 @@ float SwiftTDNonSparse::Step(const std::vector<float>& features, float reward)
     return v;
 }
 
+float SwiftTDNonSparse::Predict(const std::vector<float>& features)
+{
+    float v = 0;
+    for (int i = 0; i < features.size(); i++)
+    {
+        v += this->w[i] * features[i];
+    }
+    return v;
+}
+
 SwiftTDBinaryFeatures::SwiftTDBinaryFeatures(int number_of_features, float lambda_init, float alpha_init,
                                              float gamma_init,
                                              float epsilon_init, float eta_init,
@@ -240,6 +250,17 @@ float SwiftTDBinaryFeatures::Step(const std::vector<int>& feature_indices, float
             this->h[index] * this->z_delta[index];
     }
     this->v_old = v;
+    return v;
+}
+
+float SwiftTDBinaryFeatures::Predict(const std::vector<int>& feature_indices)
+{
+    float v = 0;
+
+    for (auto& index : feature_indices)
+    {
+        v += this->w[index];
+    }
     return v;
 }
 
@@ -368,5 +389,16 @@ float SwiftTD::Step(const std::vector<std::pair<int, float>>& feature_indices, f
             this->h[index.first] * this->z_delta[index.first] * index.second;
     }
     this->v_old = v;
+    return v;
+}
+
+float SwiftTD::Predict(const std::vector<std::pair<int, float>>& feature_indices)
+{
+    float v = 0;
+
+    for (auto& index : feature_indices)
+    {
+        v += this->w[index.first] * index.second;
+    }
     return v;
 }

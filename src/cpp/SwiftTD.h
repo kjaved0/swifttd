@@ -48,6 +48,7 @@ public:
                      float eta_init,
                      float decay_init, float meta_step_size_init, float eta_min = 1e-10);
     float Step(const std::vector<float>& features, float reward);
+    float Predict(const std::vector<float>& features);
 };
 
 class SwiftTDBinaryFeatures
@@ -87,6 +88,7 @@ public:
                           float epsilon_init, float eta_init,
                           float decay_init, float meta_step_size_init, float eta_min = 1e-10);
     float Step(const std::vector<int>& feature_indices, float reward);
+    float Predict(const std::vector<int>& feature_indices);
 };
 
 
@@ -127,6 +129,7 @@ public:
                           float epsilon_init, float eta_init,
                           float decay_init, float meta_step_size_init, float eta_min = 1e-10);
     float Step(const std::vector<std::pair<int, float>>& feature_indices, float reward);
+    float Predict(const std::vector<std::pair<int, float>>& feature_indices);
 };
 
 #endif // SWIFTTD_H

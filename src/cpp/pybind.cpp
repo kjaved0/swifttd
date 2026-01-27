@@ -22,7 +22,10 @@ PYBIND11_MODULE(swift_td, m)
           .def("step", &SwiftTDNonSparse::Step,
                "Perform one step of learning",
                py::arg("features"),
-               py::arg("reward"));
+               py::arg("reward"))
+          .def("predict", &SwiftTDNonSparse::Predict,
+               "Predict the value without updating model weights",
+               py::arg("features"));
 
      // Bind SwiftTDSparse class
      py::class_<SwiftTDBinaryFeatures>(m, "SwiftTDBinaryFeatures")
@@ -40,7 +43,10 @@ PYBIND11_MODULE(swift_td, m)
           .def("step", &SwiftTDBinaryFeatures::Step,
                "Perform one step of learning with sparse features",
                py::arg("features_indices"),
-               py::arg("reward"));
+               py::arg("reward"))
+          .def("predict", &SwiftTDBinaryFeatures::Predict,
+               "Predict the value without updating model weights",
+               py::arg("features_indices"));
 
      // Bind SwiftTDSparseAndNonBinaryFeatures class
      py::class_<SwiftTD>(m, "SwiftTD")
@@ -58,5 +64,8 @@ PYBIND11_MODULE(swift_td, m)
           .def("step", &SwiftTD::Step,
                "Perform one step of learning with sparse non-binary features",
                py::arg("feature_indices_values"),
-               py::arg("reward"));
+               py::arg("reward"))
+          .def("predict", &SwiftTD::Predict,
+               "Predict the value without updating model weights",
+               py::arg("feature_indices_values"));
 }
