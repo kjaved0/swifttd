@@ -64,7 +64,7 @@ float SwiftTDNonSparse::Step(const std::vector<float>& features, float reward)
         {
             this->beta[i] = log(this->eta);
         }
-        if(exp(this->beta[i]) < log(this->eta_min))
+        if(exp(this->beta[i]) < this->eta_min)
         {
             this->beta[i] = log(this->eta_min);
         }
@@ -180,7 +180,7 @@ float SwiftTDBinaryFeatures::Step(const std::vector<int>& feature_indices, float
         {
             this->beta[index] = log(this->eta);
         }
-        if(exp(this->beta[index]) < log(this->eta_min))
+        if(exp(this->beta[index]) < this->eta_min)
         {
             this->beta[index] = log(this->eta_min);
         }
@@ -318,7 +318,7 @@ float SwiftTD::Step(const std::vector<std::pair<int, float>>& feature_indices, f
         {
             this->beta[index.first] = log(this->eta);
         }
-        if(exp(this->beta[index.first]) < log(this->eta_min))
+        if(exp(this->beta[index.first]) < this->eta_min)
         {
             this->beta[index.first] = log(this->eta_min);
         }
